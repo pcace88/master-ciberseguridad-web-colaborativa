@@ -46,9 +46,9 @@
 #{form @processRegister(), id:'form', name:'reg-form'}
 <h2 class="text-left">&{'Public.register.title'}</h2>
 
-#{ifErrors}
-<div id="register_error" class="error">${errors[0]}</div>
-#{/ifErrors}
+#{if error}
+<div id="register_error" class="error">${error}</div>
+#{/if}
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">

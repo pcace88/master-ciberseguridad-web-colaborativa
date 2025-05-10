@@ -13,9 +13,14 @@ public class PublicContentBase extends Controller {
     }
 
     public static void processRegister(String username, String password, String passwordCheck, String type){
-        User u = new User(username, HashUtils.getMd5(password), type, -1);
-        u.save();
-        registerComplete();
+        if (User.loadUser(username) != null) {
+            String error = "Username already exists";
+            render("PublicContentBase/register.html", error);
+        } else {
+            User u = new User(username, HashUtils.getMd5(password), type, -1);
+            u.save();
+            registerComplete();
+        }
     }
 
     public static void registerComplete(){
